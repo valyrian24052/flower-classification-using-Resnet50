@@ -9,12 +9,16 @@ def main():
     y_train = np.load('flower_classification/data/processed/y_train.npy')
     y_test = np.load('flower_classification/data/processed/y_test.npy')
     
-    # Build, train and evaluate the model
-    model = build_model()
-    model = train_model(model, X_train, y_train)
-    score = evaluate_model(model, X_test, y_test)
+    # Get input shape and number of classes
+    input_shape = X_train.shape[1:]
+    num_classes = len(np.unique(y_train))
     
-    print(f"Model accuracy: {score:.2f}")
+    # Build, train and evaluate the model
+    model = build_model(input_shape, num_classes)
+    train_model(model, X_train, y_train)
+    accuracy = evaluate_model(model, X_test, y_test)
+    
+    print(f"Model accuracy: {accuracy:.2f}")
 
 if __name__ == "__main__":
     main()
