@@ -1,18 +1,17 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.layers import Dense, Dropout, Flatten, GlobalAveragePooling2D
+from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.optimizers import Adam
 
 def build_model(input_shape, num_classes):
-    """Builds a CNN model using Keras."""
+    """Builds a model using a pretrained ResNet50 base."""
+    resnet_base = ResNet50(weights='imagenet', include_top=False, input_shape=input_shape)
+    resnet_base.trainable = False  # Freeze the base model
+
     model = Sequential([
-        Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
-        MaxPooling2D((2, 2)),
-        Conv2D(64, (3, 3), activation='relu'),
-        MaxPooling2D((2, 2)),
-        Conv2D(128, (3, 3), activation='relu'),
-        MaxPooling2D((2, 2)),
-        Flatten(),
+        resnet_base,
+        GlobalAveragePooling2D(),
         Dense(128, activation='relu'),
         Dropout(0.5),
         Dense(num_classes, activation='softmax')
