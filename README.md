@@ -9,7 +9,7 @@ This project aims to classify different types of flowers using a machine learnin
 
 1. Clone the repository
 
-   git clone https://github.com/yourusername/flower_classification.git
+   git clone git@github.com:valyrian24052/flower-classification-using-Resnet50.git
    cd flower_classification
 
 2. Create and activate a virtual environment
