@@ -3,6 +3,7 @@
 This project aims to classify different types of flowers using a machine learning model. The model is built using a pretrained ResNet50 as the base model, followed by custom layers for the specific classification task.
 
 ## Directory Structure
+![image](https://github.com/user-attachments/assets/883a934d-1c84-4f3e-8282-ba6f00bab481)
 
 ## Installation
 
